@@ -20,4 +20,24 @@ func main() {
 	if err != nil {
 		log.Fatalf("Error happends during migration: %v\n", err)
 	}
+
+	// Create products
+	obs := "Super cool laptop"
+	products := []model.Product{
+		{
+			Name:         "Laptop",
+			Price:        1350,
+			Observations: &obs,
+		},
+		{
+			Name:  "Smartphone",
+			Price: 350,
+		},
+		{
+			Name:  "Monitor",
+			Price: 250,
+		},
+	}
+
+	storage.DB().CreateInBatches(products, len(products))
 }
