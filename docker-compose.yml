@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: postgres_gorm
+    image: postgres:13.4-alpine
+    restart: on-failure
+    environment:
+      POSTGRES_USER: gopher
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: gorm-example
+    ports:
+      - "7530:5432"
+  
+  mariadb:
+    container_name: mariadb_gorm
+    image: mariadb:10.5.12
+    restart: on-failure
+    environment:
+      MARIADB_ROOT_PASSWORD: secret
+      MARIADB_PASSWORD: secret
+      MARIADB_DATABASE: gorm-example
+      MARIADB_USER: gopher
+    ports:
+      - "7531:3306"
