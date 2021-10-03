@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/sriosdev/gorm-example/model"
@@ -19,5 +20,13 @@ func main() {
 	)
 	if err != nil {
 		log.Fatalf("Error happends during migration: %v\n", err)
+	}
+
+	// Retrive all products
+	products := make([]model.Product, 0)
+	storage.DB().Find(&products)
+
+	for _, product := range products {
+		fmt.Printf("%d - %s\n", product.ID, product.Name)
 	}
 }
